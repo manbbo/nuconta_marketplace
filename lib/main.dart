@@ -5,7 +5,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // https://staging-nu-needful-things.nubank.com.br/query
 
   @override
   Widget build(BuildContext context) {
