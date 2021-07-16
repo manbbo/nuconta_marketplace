@@ -3,7 +3,7 @@ import 'package:nuconta_marketplace/constants/APICalls.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 
 void main() {
-  group("Fetch Users", () {
+  group("Fetch User", () {
     test("If users exists", () async {
       expect(await API().getResult(), isA<UserModel>());
     });

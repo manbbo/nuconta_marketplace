@@ -1,9 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:http/http.dart' as http;
 import 'package:nuconta_marketplace/constants/api/APICallConstant.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 
@@ -35,15 +32,6 @@ class API {
     );
 
     return await getClient().query(_options);
-  }
-
-  Future<Widget> getWidgetUser() async {
-    return GraphQLProvider(
-      client: ValueNotifier(getClient()),
-      child: MaterialApp (
-
-      ),
-    );
   }
 
   Future<UserModel> getResult() async {
