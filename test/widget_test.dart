@@ -8,7 +8,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(HomeView());
 
-    expect(find.text('Hello'), findsOneWidget);
+    expect(find.byWidget(Column()), findsOneWidget);
     expect(find.text('Hello'), findsNothing);
 
     // Tap the '+' icon and trigger a frame.
