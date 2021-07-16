@@ -1,10 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class Product {
-  final int id;
-  final String name;
-  final String description;
-  final String image;
+  final String id;
 
   const Product({
     @required this.id,
@@ -14,7 +11,7 @@ class Product {
   });
 
   Product copyWith({
-    int id,
+    String id,
     String name,
     String description,
     String image,
@@ -55,7 +52,7 @@ class Product {
 
   factory Product.fromMap(Map<String, dynamic> map) {
     return new Product(
-      id: map['id'] as int,
+      id: map['id'] as String,
       name: map['name'] as String,
       description: map['description'] as String,
       image: map['image'] as String,
@@ -72,4 +69,7 @@ class Product {
     } as Map<String, dynamic>;
   }
 
+  final String name;
+  final String description;
+  final String image;
 }

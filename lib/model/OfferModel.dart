@@ -2,7 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:nuconta_marketplace/model/ProductModel.dart';
 
 class Offer {
-  final int id;
+  final String id;
+  final int price;
 
   const Offer({
     @required this.id,
@@ -11,7 +12,7 @@ class Offer {
   });
 
   Offer copyWith({
-    int id,
+    String id,
     int price,
     Product product,
   }) {
@@ -47,7 +48,7 @@ class Offer {
 
   factory Offer.fromMap(Map<String, dynamic> map) {
     return new Offer(
-      id: map['id'] as int,
+      id: map['id'] as String,
       price: map['price'] as int,
       product: map['product'] as Product,
     );
@@ -62,6 +63,5 @@ class Offer {
     } as Map<String, dynamic>;
   }
 
-  final int price;
   final Product product;
 }
