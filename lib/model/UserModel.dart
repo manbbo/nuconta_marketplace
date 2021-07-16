@@ -15,7 +15,7 @@ class UserModel {
   UserModel copyWith({
     String id,
     String name,
-    String balance,
+    int balance,
     Offer offers,
   }) {
     if ((id == null || identical(id, this.id)) &&
@@ -56,7 +56,7 @@ class UserModel {
     return new UserModel(
       id: map['id'] as String,
       name: map['name'] as String,
-      balance: map['balance'] as String,
+      balance: map['balance'] as int,
       offers: map['offers'] as Offer,
     );
   }
@@ -71,6 +71,6 @@ class UserModel {
     } as Map<String, dynamic>;
   }
 
-  final String balance;
+  final int balance;
   final Offer offers;
 }
