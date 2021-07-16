@@ -17,7 +17,7 @@ class API {
 
     GraphQLClient client =
       GraphQLClient(
-        cache: GraphQLCache(store: HiveStore()),
+        cache: GraphQLCache(store: InMemoryStore()),
         link: link,
       );
 
@@ -30,6 +30,8 @@ class API {
       pollInterval: Duration(seconds: 15),
       fetchResults: true,
     );
+
+    await HiveStore.openBox("UserModel");
 
     return await getClient().query(_options);
   }

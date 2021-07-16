@@ -44,7 +44,7 @@ class HomeView extends StatelessWidget {
       children: [
         new Row(
           children: [
-            Text("Ola, \n${user.name}! Seu saldo e de R\$${user.balance}"),
+            Text("Hello, \n${user.name}! Your balance is \$${user.balance}"),
           ],
         )
       ],
