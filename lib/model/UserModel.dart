@@ -4,6 +4,7 @@ import 'package:nuconta_marketplace/model/OfferModel.dart';
 class UserModel {
   final String id;
   final String name;
+  final int balance;
 
   const UserModel({
     @required this.id,
@@ -16,7 +17,7 @@ class UserModel {
     String id,
     String name,
     int balance,
-    Offer offers,
+    List<Offer> offers,
   }) {
     if ((id == null || identical(id, this.id)) &&
         (name == null || identical(name, this.name)) &&
@@ -57,7 +58,7 @@ class UserModel {
       id: map['id'] as String,
       name: map['name'] as String,
       balance: map['balance'] as int,
-      offers: map['offers'] as Offer,
+      offers: map['offers'] as List<Offer>,
     );
   }
 
@@ -71,6 +72,5 @@ class UserModel {
     } as Map<String, dynamic>;
   }
 
-  final int balance;
-  final Offer offers;
+  final List<Offer> offers;
 }

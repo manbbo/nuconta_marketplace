@@ -4,7 +4,27 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:nuconta_marketplace/constants/APICalls.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  Widget userBanner(UserModel user) {
+    return new Row(
+      children: [
+        Text(
+            "Hello, ${user.name}! Your balance is ${user.balance}",
+            textDirection: TextDirection.ltr,
+            textAlign: TextAlign.center)
+      ],
+    );
+  }
+
+  Widget offerList(UserModel user) {
+
+  }
+
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   Widget homeViewWidget() {
     return GraphQLProvider(
       client: ValueNotifier(API().getClient()),
@@ -20,7 +40,7 @@ class HomeView extends StatelessWidget {
             future: API().getResult(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return UserBanner(snapshot.data as UserModel);
+                return this.widget.userBanner(snapshot.data as UserModel);
               } else {
                 return Center(
                   child: CircularProgressIndicator(),
@@ -39,15 +59,5 @@ class HomeView extends StatelessWidget {
     return homeViewWidget();
   }
 
-  Widget UserBanner(UserModel user) {
-    return new Column(
-      children: [
-        new Row(
-          children: [
-            Text("Hello, \n${user.name}! Your balance is \$${user.balance}"),
-          ],
-        )
-      ],
-    );
-  }
+
 }
