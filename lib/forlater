@@ -1,0 +1,26 @@
+return GraphQLProvider(
+      client: ValueNotifier(API().getClient()),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: new Scaffold(
+          appBar: null,
+          body: FutureBuilder(
+            future: API().getResult(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return this.widget.userBanner(snapshot.data as UserModel);
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+            //initialData: ,
+          ),
+        ),
+      ),
+    )

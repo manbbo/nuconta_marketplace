@@ -4,9 +4,9 @@ import 'package:nuconta_marketplace/model/OfferModel.dart';
 class UserModel {
   final String id;
   final String name;
-  final int balance;
+  int balance;
 
-  const UserModel({
+  UserModel({
     @required this.id,
     @required this.name,
     @required this.balance,
@@ -19,13 +19,6 @@ class UserModel {
     int balance,
     List<Offer> offers,
   }) {
-    if ((id == null || identical(id, this.id)) &&
-        (name == null || identical(name, this.name)) &&
-        (balance == null || identical(balance, this.balance)) &&
-        (offers == null || identical(offers, this.offers))) {
-      return this;
-    }
-
     return new UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
