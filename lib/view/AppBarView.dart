@@ -17,8 +17,7 @@ class AppBarView {
         textDirection: TextDirection.ltr,
         children: [
           Text("Hello, ${user.name}! Your balance is ${user.balance}",
-              textDirection: TextDirection.ltr,
-              textAlign: TextAlign.center)
+              textDirection: TextDirection.ltr, textAlign: TextAlign.center)
         ],
       ),
     );

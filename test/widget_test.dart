@@ -39,8 +39,8 @@ void main() {
 
   testWidgets('Testing if the AppView shows up properly - with api call',
       (WidgetTester tester) async {
-    
-    await tester.pumpWidget(HomeView().createState().build(HomeView().createState().context));
+    await tester.pumpWidget(
+        HomeView().createState().build(HomeView().createState().context));
     expect(
         find.widgetWithText(Row, "Hello, Jerry Smith! Your balance is 1000000"),
         findsOneWidget);

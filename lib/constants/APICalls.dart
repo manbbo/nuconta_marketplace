@@ -4,26 +4,22 @@ import 'package:nuconta_marketplace/model/OfferModel.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 
 class API {
-
   GraphQLClient getClient() {
     final HttpLink httpLink = HttpLink(APICallConstant.API_URL);
 
-    final AuthLink auth = AuthLink(getToken: () =>
-      APICallConstant.API_TOKEN
-    );
+    final AuthLink auth = AuthLink(getToken: () => APICallConstant.API_TOKEN);
 
     final Link link = auth.concat(httpLink);
 
-    GraphQLClient client =
-      GraphQLClient(
-        cache: GraphQLCache(store: InMemoryStore()),
-        link: link,
-      );
+    GraphQLClient client = GraphQLClient(
+      cache: GraphQLCache(store: InMemoryStore()),
+      link: link,
+    );
 
     return client;
   }
 
-  Future<QueryResult> query (String queries) async {
+  Future<QueryResult> query(String queries) async {
     final WatchQueryOptions _options = WatchQueryOptions(
       document: gql(queries),
       pollInterval: Duration(seconds: 15),
@@ -82,7 +78,9 @@ class API {
     if (res.hasException) {
       throw "Unable to retrieve offers list. Please try again.";
     } else {
-      return (res.data.entries.last.value["offers"] as List)?.map((e) => OfferModel.fromMap(e))?.toList();
+      return (res.data.entries.last.value["offers"] as List)
+          ?.map((e) => OfferModel.fromMap(e))
+          ?.toList();
     }
   }
 }

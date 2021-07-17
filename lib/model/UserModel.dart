@@ -47,10 +47,7 @@ class UserModel {
 
   @override
   int get hashCode =>
-      id.hashCode ^
-      name.hashCode ^
-      balance.hashCode ^
-      __typename.hashCode ;
+      id.hashCode ^ name.hashCode ^ balance.hashCode ^ __typename.hashCode;
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return new UserModel(

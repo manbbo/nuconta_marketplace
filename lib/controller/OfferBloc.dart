@@ -4,7 +4,8 @@ import 'package:nuconta_marketplace/model/OfferModel.dart';
 import 'package:rxdart/rxdart.dart';
 
 class OffersBloc extends BlocBase {
-  BehaviorSubject<List<OfferModel>> subject = BehaviorSubject<List<OfferModel>>();
+  BehaviorSubject<List<OfferModel>> subject =
+      BehaviorSubject<List<OfferModel>>();
 
   List<OfferModel> Offers;
 
