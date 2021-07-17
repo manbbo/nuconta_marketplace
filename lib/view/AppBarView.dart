@@ -10,14 +10,17 @@ class AppBarView {
   }
 
   Widget userBanner(UserModel user) {
-    return new Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      textDirection: TextDirection.ltr,
-      children: [
-        Text("Hello, ${user.name}! Your balance is ${user.balance}",
-            textDirection: TextDirection.ltr,
-            textAlign: TextAlign.center)
-      ],
+    return Container(
+      height: 50,
+      child: new Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        textDirection: TextDirection.ltr,
+        children: [
+          Text("Hello, ${user.name}! Your balance is ${user.balance}",
+              textDirection: TextDirection.ltr,
+              textAlign: TextAlign.center)
+        ],
+      ),
     );
   }
 }

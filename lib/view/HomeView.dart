@@ -25,6 +25,7 @@ class _HomeViewState extends State<HomeView> {
         client: ValueNotifier(API().getClient()),
         child: MaterialApp(
           title: 'NuConta Marketplace',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -36,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
                 builder: (context, AsyncSnapshot<UserModel> snapshot) {
                   if (snapshot.hasData && snapshot.data.id!= null){
                     return Container(
-                      margin: EdgeInsets.only(top: 30),
+                      margin: EdgeInsets.only(top: 50),
                       child: Column(
                         children: [
                           AppBarView()
