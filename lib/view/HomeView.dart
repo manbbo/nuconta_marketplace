@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:nuconta_marketplace/constants/APICalls.dart';
+import 'package:nuconta_marketplace/controller/OfferBloc.dart';
 import 'package:nuconta_marketplace/controller/UserBloc.dart';
+import 'package:nuconta_marketplace/model/OfferModel.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 import 'package:nuconta_marketplace/view/AppBarView.dart';
+import 'package:nuconta_marketplace/view/OffersListView.dart';
 
 class HomeView extends StatefulWidget {
   final UserBloc userBloc = UserBloc();
+  final OffersBloc offersBloc = OffersBloc();
 
   HomeView() {
     userBloc.createUser();
+    offersBloc.createOffers();
   }
 
   @override
@@ -37,8 +42,16 @@ class _HomeViewState extends State<HomeView> {
                   if (snapshot.hasData && snapshot.data.id != null) {
                     return Container(
                       margin: EdgeInsets.only(top: 50),
-                      child: Column(
-                        children: [AppBarView().userBanner(snapshot.data)],
+                      child: Row(
+                        children: [
+                          AppBarView().userBanner(snapshot.data),
+                          StreamBuilder(
+                            stream: this.widget.offersBloc.subj.stream,
+                              builder: (context, AsyncSnapshot<List<OfferModel>> snapshot) {
+                                return OfferListView(offers: snapshot.data).listView(null);
+                              }
+                          )
+                        ],
                       ),
                     );
                   } else {
