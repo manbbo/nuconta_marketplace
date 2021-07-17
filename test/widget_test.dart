@@ -12,21 +12,8 @@ import 'package:nuconta_marketplace/view/HomeView.dart';
 UserModel getMockedUser() {
   return new UserModel(
       id: "01231",
-      name: "John", balance: 10,
-      offers: [
-        new Offer(
-            id: "0", price: 1000,
-            product: new Product(id: "samd",
-              name: "portal gun 1",
-              description: "it's a gun that shoots 1 portal",
-              image: "https://img2.cgtrader.com/items/783278/bc7c670a80/portal-gun-3d-model-obj-fbx-stl-sldprt-sldasm-slddrw-mtl.jpg")),
-        new Offer(
-            id: "1", price: 2000,
-            product: new Product(id: "sasa",
-              name: "portal gun 2",
-              description: "it's a gun that shoots 2 portals",
-              image: "https://images-na.ssl-images-amazon.com/images/I/7169N60bPDL._SL1500_.jpg"))
-  ]);
+      name: "John", balance: 10
+  );
 }
 
 void main() {

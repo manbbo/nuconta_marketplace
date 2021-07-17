@@ -9,15 +9,8 @@ class UserBloc extends BlocBase {
   UserModel user;
 
   createUser() async {
-    user = await API().getResult();
+    user = await API().getUserResult();
     subject.sink.add(user);
-  }
-
-  buy(int offerId) {
-    addListener(() {
-      user.balance -= (user.balance - user.offers[offerId].price >= 0) ?
-          user.offers[offerId].price : 0;
-    });
   }
 
   @override

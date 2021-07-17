@@ -5,31 +5,34 @@ class UserModel {
   final String id;
   final String name;
   int balance;
+  final String __typename;
+
+  //<editor-fold desc="Data Methods" defaultstate="collapsed">
 
   UserModel({
     @required this.id,
     @required this.name,
     @required this.balance,
-    @required this.offers,
-  });
+    @required String typename,
+  }) : __typename = typename;
 
   UserModel copyWith({
     String id,
     String name,
     int balance,
-    List<Offer> offers,
+    String typename,
   }) {
     return new UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
       balance: balance ?? this.balance,
-      offers: offers ?? this.offers,
+      typename: typename ?? this.__typename,
     );
   }
 
   @override
   String toString() {
-    return 'UserModel{id: $id, name: $name, balance: $balance, offers: $offers}';
+    return 'UserModel{id: $id, name: $name, balance: $balance, __typename: $__typename}';
   }
 
   @override
@@ -40,18 +43,21 @@ class UserModel {
           id == other.id &&
           name == other.name &&
           balance == other.balance &&
-          offers == other.offers);
+          __typename == other.__typename);
 
   @override
   int get hashCode =>
-      id.hashCode ^ name.hashCode ^ balance.hashCode ^ offers.hashCode;
+      id.hashCode ^
+      name.hashCode ^
+      balance.hashCode ^
+      __typename.hashCode ;
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return new UserModel(
-      id: map['id'] as String,
-      name: map['name'] as String,
-      balance: map['balance'] as int,
-      offers: map['offers'] as List<Offer>,
+      id: map.entries.last.value['id'] as String,
+      name: map.entries.last.value['name'] as String,
+      balance: map.entries.last.value['balance'] as int,
+      typename: map.entries.last.value['__typename'] as String,
     );
   }
 
@@ -61,9 +67,10 @@ class UserModel {
       'id': this.id,
       'name': this.name,
       'balance': this.balance,
-      'offers': this.offers,
+      '__typename': this.__typename,
     } as Map<String, dynamic>;
   }
 
-  final List<Offer> offers;
+  //</editor-fold>
+
 }

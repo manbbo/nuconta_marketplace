@@ -1,5 +1,6 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:nuconta_marketplace/constants/api/APICallConstant.dart';
+import 'package:nuconta_marketplace/model/OfferModel.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 
 class API {
@@ -34,15 +35,34 @@ class API {
     return await getClient().query(_options);
   }
 
-  Future<UserModel> getResult() async {
+  Future<UserModel> getUserResult() async {
     await initHiveForFlutter();
 
     String readRepo = """
       {
-    query: viewer {
+        viewer {
           id,
           name,
-          balance,
+          balance
+        }
+    }
+    """;
+
+    final res = await this.query(readRepo);
+
+    if (res.hasException) {
+      throw "Unable to retrieve user. Please try again.";
+    } else {
+      return UserModel.fromMap(res.data);
+    }
+  }
+
+  Future<List<OfferModel>> getOffersResult() async {
+    await initHiveForFlutter();
+
+    String readRepo = """
+      {
+        viewer {
           offers {
             id,
             price,
@@ -59,14 +79,10 @@ class API {
 
     final res = await this.query(readRepo);
 
-    UserModel user;
-
     if (res.hasException) {
-      throw "Unable to retrieve user. Please try again.";
+      throw "Unable to retrieve offers list. Please try again.";
     } else {
-      user = UserModel.fromMap(res.data);
+      return (res.data.entries.last.value["offers"] as List)?.map((e) => OfferModel.fromMap(e))?.toList();
     }
-
-    return user;
   }
 }

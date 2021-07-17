@@ -2,16 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:nuconta_marketplace/controller/UserBloc.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 
-class AppBarView extends StatelessWidget {
+class AppBarView {
   var userBloc = UserBloc();
 
   AppBarView() {
     userBloc.createUser();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return this.userBanner(userBloc.subj.value);
   }
 
   Widget userBanner(UserModel user) {
