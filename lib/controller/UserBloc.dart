@@ -13,6 +13,16 @@ class UserBloc extends BlocBase {
     subject.sink.add(user);
   }
 
+  buy(int price) {
+    user.balance -= (user.balance - price >= 0 && price <= user.balance)? price : 0;
+    subject.sink.add(user);
+  }
+
+  @override
+  void notifyListeners() {
+    super.notifyListeners();
+  }
+
   @override
   void dispose() {
     super.dispose();
