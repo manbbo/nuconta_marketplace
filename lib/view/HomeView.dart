@@ -38,18 +38,33 @@ class _HomeViewState extends State<HomeView> {
               appBar: null,
               body: StreamBuilder(
                 stream: this.widget.userBloc.subj.stream,
-                builder: (context, AsyncSnapshot<UserModel> snapshot) {
-                  if (snapshot.hasData && snapshot.data.id != null) {
+                builder: (context, AsyncSnapshot<UserModel> userSnapshot) {
+                  if (userSnapshot.hasData && userSnapshot.data.id != null) {
                     return Container(
                       margin: EdgeInsets.only(top: 50),
-                      child: Row(
+                      child: Column(
                         children: [
-                          AppBarView().userBanner(snapshot.data),
-                          StreamBuilder(
-                            stream: this.widget.offersBloc.subj.stream,
-                              builder: (context, AsyncSnapshot<List<OfferModel>> snapshot) {
-                                return OfferListView(offers: snapshot.data).listView(null);
-                              }
+                          AppBarView(userModel: userSnapshot.data),
+                          Expanded(
+                            child: Container(
+                              child: StreamBuilder(
+                                  stream: this.widget.offersBloc.subj.stream,
+                                  builder: (context,
+                                      AsyncSnapshot<List<OfferModel>>
+                                          offerSnapshot) {
+                                    if (offerSnapshot.hasData &&
+                                        offerSnapshot.data[0].id != null) {
+                                      return OfferListView(
+                                          offers: offerSnapshot.data,
+                                          context: context,
+                                          userBloc: this.widget.userBloc);
+                                    } else {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  }),
+                            ),
                           )
                         ],
                       ),

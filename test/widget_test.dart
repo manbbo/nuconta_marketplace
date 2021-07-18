@@ -46,21 +46,20 @@ void main() {
   testWidgets('Testing if the AppBarView shows up properly',
       (WidgetTester tester) async {
     await tester.pumpWidget(AppBarView(userModel: getMockedUser()));
-    expect(
-        find.widgetWithText(Column,
-            "Hello, ${getMockedUser().name}!"),
+    expect(find.widgetWithText(Column, "Hello, ${getMockedUser().name}!"),
         findsOneWidget);
 
     expect(
-    find.widgetWithText(Column,
-        "Your balance is ${getMockedUser().balance}"),
+        find.widgetWithText(
+            Column, "Your balance is ${getMockedUser().balance}"),
         findsOneWidget);
     //expect(find.text('1'), findsOneWidget);
   });
 
   testWidgets('Testing if the OfferListView shows up properly',
       (WidgetTester tester) async {
-    await mockNetworkImagesFor(() => tester.pumpWidget(AppBarView(userModel: getMockedUser())));
+    await mockNetworkImagesFor(
+        () => tester.pumpWidget(AppBarView(userModel: getMockedUser())));
 
     expect(find.widgetWithText(Row, "Portal gun 1"), findsOneWidget);
     expect(find.widgetWithText(Row, "Price: 1"), findsOneWidget);
@@ -76,12 +75,11 @@ void main() {
 
   testWidgets('Testing if the OfferView shows up properly',
       (WidgetTester tester) async {
-    await mockNetworkImagesFor(() => tester
-        .pumpWidget(OfferView(product: getMockedOffers()[0].product).view(null)));
+    await mockNetworkImagesFor(() => tester.pumpWidget(
+        OfferView(product: getMockedOffers()[0].product).view(null)));
 
     expect(find.widgetWithText(Row, "Hi, I'm a product!"), findsOneWidget);
     expect(find.widgetWithText(Row, "Portal gun 1"), findsOneWidget);
     expect(find.widgetWithText(FlatButton, "BUY"), findsOneWidget);
-
   });
 }
