@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:nuconta_marketplace/model/OfferModel.dart';
 
 class UserModel {
   final String id;
