@@ -7,8 +7,7 @@ import 'package:nuconta_marketplace/model/ProductModel.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 import 'package:nuconta_marketplace/view/AppBarView.dart';
 
-import 'package:nuconta_marketplace/view/HomeView.dart';
-import 'package:nuconta_marketplace/view/OffersListView.dart';
+import 'package:nuconta_marketplace/view/OfferView.dart';
 
 UserModel getMockedUser() {
   return new UserModel(id: "01231", name: "John", balance: 10);
@@ -21,7 +20,7 @@ Future<UserModel> getUserResponse() {
 List<OfferModel> getMockedOffers() {
   return [
     OfferModel(
-        id: '1',
+        id: 'first',
         price: 1,
         product: Product(
             id: "0",
@@ -31,7 +30,7 @@ List<OfferModel> getMockedOffers() {
             name: "Portal gun 1"),
         p_typename: null),
     OfferModel(
-        id: '2',
+        id: 'second',
         price: 2,
         product: Product(
             id: "3",
@@ -46,34 +45,43 @@ List<OfferModel> getMockedOffers() {
 void main() {
   testWidgets('Testing if the AppBarView shows up properly',
       (WidgetTester tester) async {
-    await tester.pumpWidget(AppBarView().userBanner(getMockedUser()));
+    await tester.pumpWidget(AppBarView(userModel: getMockedUser()));
     expect(
-        find.widgetWithText(Row,
-            "Hello, ${getMockedUser().name}! Your balance is ${getMockedUser().balance}"),
+        find.widgetWithText(Column,
+            "Hello, ${getMockedUser().name}!"),
         findsOneWidget);
 
-    //await tester.tap(find.byIcon(Icons.add));
-    //await tester.pump();
-
-    // Verify that our counter has incremented.
-    //expect(find.text('0'), findsNothing);
+    expect(
+    find.widgetWithText(Column,
+        "Your balance is ${getMockedUser().balance}"),
+        findsOneWidget);
     //expect(find.text('1'), findsOneWidget);
   });
 
   testWidgets('Testing if the OfferListView shows up properly',
       (WidgetTester tester) async {
+    await mockNetworkImagesFor(() => tester.pumpWidget(AppBarView(userModel: getMockedUser())));
+
+    expect(find.widgetWithText(Row, "Portal gun 1"), findsOneWidget);
+    expect(find.widgetWithText(Row, "Price: 1"), findsOneWidget);
+
+    //var gestureItem = find.byKey(Key("first"));
+
+    //await tester.tap(gestureItem);
+    //await tester.pump();
+
+    //expect(find.text("Hi, I'm a product!"), findsOneWidget);
+    //expect(find.widgetWithText(Row, "Price: 1"), findsNothing);
+  });
+
+  testWidgets('Testing if the OfferView shows up properly',
+      (WidgetTester tester) async {
     await mockNetworkImagesFor(() => tester
-        .pumpWidget(OfferListView(offers: getMockedOffers()).listView(null)));
+        .pumpWidget(OfferView(product: getMockedOffers()[0].product).view(null)));
 
-    expect(find.widgetWithText(Column, "Hi, I'm a product!"), findsOneWidget);
-    expect(find.widgetWithText(Column, "Portal gun 1"), findsOneWidget);
-    expect(find.widgetWithText(Column, "1"), findsOneWidget);
+    expect(find.widgetWithText(Row, "Hi, I'm a product!"), findsOneWidget);
+    expect(find.widgetWithText(Row, "Portal gun 1"), findsOneWidget);
+    expect(find.widgetWithText(FlatButton, "BUY"), findsOneWidget);
 
-//await tester.tap(find.byIcon(Icons.add));
-//await tester.pump();
-
-// Verify that our counter has incremented.
-//expect(find.text('0'), findsNothing);
-//expect(find.text('1'), findsOneWidget);
   });
 }
