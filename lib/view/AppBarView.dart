@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 
 class AppBarView extends StatefulWidget {
-  UserModel userModel;
+  final UserModel userModel;
 
   AppBarView({this.userModel});
 
