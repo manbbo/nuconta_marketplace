@@ -9,7 +9,7 @@ class OfferListView extends StatefulWidget {
   final BuildContext context;
   final UserBloc userBloc;
 
-  OfferListView ({this.offers, this.context, this.userBloc});
+  OfferListView({this.offers, this.context, this.userBloc});
 
   @override
   _OfferListViewState createState() => _OfferListViewState();
@@ -32,24 +32,27 @@ class _OfferListViewState extends State<OfferListView> {
             key: gKey,
             onTap: () {
               Navigator.push(context, new MaterialPageRoute(builder: (context) {
-                return new OfferView(product: offer.product, onPressedFun: (){
-                  if (this.widget.userBloc.subj.value.balance > 0) {
-                    setState(() {
-                      this.widget.userBloc.buy(offer.price);
-                    });
-                  }
-                },);
+                return new OfferView(
+                  product: offer.product,
+                  onPressedFun: () {
+                    if (this.widget.userBloc.subj.value.balance > 0) {
+                      setState(() {
+                        this.widget.userBloc.buy(offer.price);
+                      });
+                    }
+                  },
+                );
               }));
             },
             child: Container(
               child: Column(
                 children: [
-                  Container(
-                      child: Image.network(offer.product.image)//image,
-                  ),
+                  Container(child: Image.network(offer.product.image) //image,
+                      ),
                   Text(offer.product.name),
                   Text("Price: ${offer.price}")
-                ],),
+                ],
+              ),
             ),
           );
         },

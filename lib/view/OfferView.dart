@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nuconta_marketplace/model/ProductModel.dart';
 
-class OfferView extends StatelessWidget{
+class OfferView extends StatelessWidget {
   final Product product;
   final Function onPressedFun;
 
-  OfferView ({this.product, this.onPressedFun});
+  OfferView({this.product, this.onPressedFun});
 
   Key getProductKey() {
     return Key(product.id);
@@ -27,9 +27,8 @@ class OfferView extends StatelessWidget{
                   onPressed: () => Navigator.pop(context),
                 ),
               ),
-              Container(
-                  child: Image.network(product.image)//image,
-              ),
+              Container(child: Image.network(product.image) //image,
+                  ),
               Text(product.name),
               Container(
                 height: 200,
@@ -43,7 +42,8 @@ class OfferView extends StatelessWidget{
                   onPressed: onPressedFun,
                 ),
               )
-            ],),
+            ],
+          ),
         ),
       ),
     );

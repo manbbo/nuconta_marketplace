@@ -1,25 +1,32 @@
 import 'package:flutter/cupertino.dart';
-import 'package:nuconta_marketplace/controller/UserBloc.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 
-class AppBarView {
-  var userBloc = UserBloc();
+class AppBarView extends StatefulWidget {
+  UserModel userModel;
 
-  AppBarView() {
-    userBloc.createUser();
+  AppBarView({this.userModel});
+
+  @override
+  _AppBarViewState createState() => _AppBarViewState();
+}
+
+class _AppBarViewState extends State<AppBarView> {
+  Widget userBanner() {
+    var user = this.widget.userModel;
+
+    return Container(
+        height: 50,
+        child: Column(
+          children: [
+            Text("Hello, ${user.name}!",
+                textDirection: TextDirection.ltr, textAlign: TextAlign.center),
+            Text("Your balance is ${user.balance}")
+          ],
+        ));
   }
 
-  Widget userBanner(UserModel user) {
-    return Container(
-      height: 50,
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        textDirection: TextDirection.ltr,
-        children: [
-          Text("Hello, ${user.name}! Your balance is ${user.balance}",
-              textDirection: TextDirection.ltr, textAlign: TextAlign.center)
-        ],
-      ),
-    );
+  @override
+  Widget build(BuildContext context) {
+    return userBanner();
   }
 }

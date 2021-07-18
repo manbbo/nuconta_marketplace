@@ -14,7 +14,8 @@ class UserBloc extends BlocBase {
   }
 
   buy(int price) {
-    user.balance -= (user.balance - price >= 0 && price <= user.balance)? price : 0;
+    user.balance -=
+        (user.balance - price >= 0 && price <= user.balance) ? price : 0;
     subject.sink.add(user);
   }
 
