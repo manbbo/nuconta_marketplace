@@ -15,6 +15,7 @@ class OfferView extends StatelessWidget {
 
   Widget view(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
           margin: EdgeInsets.only(top: 50),
