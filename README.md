@@ -12,24 +12,19 @@
 
 ## Usage example
 
-<!--### Para novos NERDS
+When you, Nulover, wants to use your funds from your account to buy incredible things from Nubank's shop
 
-A funcionalidade principal será a organização e indexação de HQs utilizando a API da marvel.
+## Development setup
 
-Dentro da plataforma, será possível pesquisar as HQs, personagens, séries ou autores que existem nesse mundo para organizar em sua coleção. Além disso, você poderá compartilhar essa HQ para venda nas redes sociais ou somente por gostar da série/hq em questão. Você também poderá visualizar sua análise de estatísticas de leitura de HQs e coleções.-->
+### Flutter Environment
 
-
-# Development setup
-
-## Kotlin Environment
-
-## Installation
+### Installation
 
 If you want to use Android Studio, then [download](https://developer.android.com/studio?hl=es) it through the website;
 
 Else, you can just use Visual Code or any other IDE that supports Android development with Flutter;
 
-### If you downloaded Android Studio:
+#### If you downloaded Android Studio:
 
 Install it into your machine;
 
@@ -37,13 +32,19 @@ Go to File>Settings>Go to Pluggins and search and download Flutter, or if your A
 
 Configure the Environment Variables needed at your machine, and download JAVA for the emulator (if using);
 
-### Else:
+Run flutter pub get on CMD to get all dependencies. You can also use flutter pub upgrade with this command.
+
+#### Else:
 
 Download the project;
 
-Create a file called APICallConstant.dart under constants.api folder (you can just use the APICallConstantExample for that matter) and you're ready to modify the app.
+Create a file called APICallConstant.dart under constants.api folder (you can just use the APICallConstantExample for that matter).
 
-### First Project:
+Run the commands flutter pub get and flutter pub upgrade and you're ready to modify the app.
+
+
+
+## If this is your first project and you know nothing about Flutter, take a look:
 
 A few resources to get you started if this is your first Flutter project:
 
