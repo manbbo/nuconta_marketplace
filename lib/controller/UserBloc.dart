@@ -8,6 +8,8 @@ class UserBloc extends BlocBase {
 
   UserModel user;
 
+  UserBloc({this.user});
+
   createUser() async {
     user = await API().getUserResult();
     subject.sink.add(user);

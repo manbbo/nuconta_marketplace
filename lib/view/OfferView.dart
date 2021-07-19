@@ -14,39 +14,41 @@ class OfferView extends StatelessWidget {
   }
 
   Widget view(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(top: 50),
-        child: Directionality(
-          key: getProductKey(),
-          textDirection: TextDirection.ltr,
-          child: Column(
-            children: [
-              Container(
-                child: IconButton(
-                  icon: Icon(Icons.close),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-              Container(child: Image.network(product.image) //image,
-                  ),
-              Text(product.name),
-              Container(
-                height: 200,
-                child: SingleChildScrollView(
-                  child: Text(product.description),
-                ),
-              ),
-              AbsorbPointer(
-                absorbing: canBeActive,
-                child: Center(
-                  child: FlatButton(
-                    child: Text("BUY"),
-                    onPressed: onPressedFun,
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          margin: EdgeInsets.only(top: 50),
+          child: Directionality(
+            key: getProductKey(),
+            textDirection: TextDirection.ltr,
+            child: Column(
+              children: [
+                Container(
+                  child: IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: () => Navigator.pop(context),
                   ),
                 ),
-              )
-            ],
+                Container(child: Image.network(product.image) //image,
+                    ),
+                Text(product.name),
+                Container(
+                  height: 200,
+                  child: SingleChildScrollView(
+                    child: Text(product.description),
+                  ),
+                ),
+                AbsorbPointer(
+                  absorbing: canBeActive,
+                  child: Center(
+                    child: FlatButton(
+                      child: Text("BUY"),
+                      onPressed: onPressedFun,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

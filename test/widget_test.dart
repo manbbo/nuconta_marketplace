@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:nuconta_marketplace/constants/APICalls.dart';
+import 'package:nuconta_marketplace/controller/UserBloc.dart';
 import 'package:nuconta_marketplace/model/OfferModel.dart';
 import 'package:nuconta_marketplace/model/ProductModel.dart';
 import 'package:nuconta_marketplace/model/UserModel.dart';
 import 'package:nuconta_marketplace/view/AppBarView.dart';
 
 import 'package:nuconta_marketplace/view/OfferView.dart';
+import 'package:nuconta_marketplace/view/OffersListView.dart';
 
 UserModel getMockedUser() {
   return new UserModel(id: "01231", name: "John", balance: 10);
@@ -42,6 +44,10 @@ List<OfferModel> getMockedOffers() {
   ];
 }
 
+UserBloc getMockedBloc() {
+  return UserBloc(user: getMockedUser());
+}
+
 void main() {
   testWidgets('Testing if the AppBarView shows up properly',
       (WidgetTester tester) async {
@@ -58,20 +64,25 @@ void main() {
 
   testWidgets('Testing if the OfferListView shows up properly',
       (WidgetTester tester) async {
-    await mockNetworkImagesFor(
-        () => tester.pumpWidget(AppBarView(userModel: getMockedUser())));
+    await mockNetworkImagesFor(() => tester.pumpWidget(OfferListView(
+          offers: getMockedOffers(),
+          context: null,
+          userBloc: getMockedBloc(),
+        )));
 
-    expect(find.widgetWithText(Row, "Portal gun 1"), findsOneWidget);
-    expect(find.widgetWithText(Row, "Price: 1"), findsOneWidget);
+    expect(find.widgetWithText(Column, "Portal gun 1"), findsOneWidget);
+    expect(find.widgetWithText(Column, "Price: 1"), findsOneWidget);
   });
 
   testWidgets('Testing if the OfferView shows up properly',
       (WidgetTester tester) async {
-    await mockNetworkImagesFor(() => tester.pumpWidget(
-        OfferView(product: getMockedOffers()[0].product).view(null)));
+    await mockNetworkImagesFor(() => tester.pumpWidget(OfferView(
+          product: getMockedOffers()[0].product,
+          canBeActive: true,
+        ).view(null)));
 
-    expect(find.widgetWithText(Row, "Hi, I'm a product!"), findsOneWidget);
-    expect(find.widgetWithText(Row, "Portal gun 1"), findsOneWidget);
+    expect(find.text("Hi, I'm a product!"), findsOneWidget);
+    expect(find.text("Portal gun 1"), findsOneWidget);
     expect(find.widgetWithText(FlatButton, "BUY"), findsOneWidget);
   });
 }

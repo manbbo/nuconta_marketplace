@@ -37,7 +37,9 @@ class _OfferListViewState extends State<OfferListView> {
                   product: offer.product,
                   canBeActive: canBeActive,
                   onPressedFun: () {
-                    if (this.widget.userBloc.subj.value.balance > 0 && offer.price <= this.widget.userBloc.subj.value.balance) {
+                    if (this.widget.userBloc.subj.value.balance > 0 &&
+                        offer.price <=
+                            this.widget.userBloc.subj.value.balance) {
                       setState(() {
                         this.widget.userBloc.buy(offer.price);
                         canBeActive = true;
@@ -51,7 +53,8 @@ class _OfferListViewState extends State<OfferListView> {
                         context: context,
                         builder: (ctx) => AlertDialog(
                           title: Text("Insufficient funds"),
-                          content: Text("You have insufficient funds for this purchase"),
+                          content: Text(
+                              "You have insufficient funds for this purchase"),
                           actions: <Widget>[
                             FlatButton(
                               onPressed: () {
@@ -73,8 +76,14 @@ class _OfferListViewState extends State<OfferListView> {
                 children: [
                   Container(child: Image.network(offer.product.image) //image,
                       ),
-                  Text(offer.product.name, style: TextStyle(fontSize: 30),),
-                  Text("Price: ${offer.price}", style: TextStyle(fontSize: 20, color: Colors.red),)
+                  Text(
+                    offer.product.name,
+                    style: TextStyle(fontSize: 30),
+                  ),
+                  Text(
+                    "Price: ${offer.price}",
+                    style: TextStyle(fontSize: 20, color: Colors.red),
+                  )
                 ],
               ),
             ),
