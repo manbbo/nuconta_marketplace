@@ -20,7 +20,8 @@ class _AppBarViewState extends State<AppBarView> {
           children: [
             Text("Hello, ${user.name}!",
                 textDirection: TextDirection.ltr, textAlign: TextAlign.center),
-            Text("Your balance is ${user.balance}")
+            Text("Your balance is ${user.balance}",
+                textDirection: TextDirection.ltr, textAlign: TextAlign.center),
           ],
         ));
   }
