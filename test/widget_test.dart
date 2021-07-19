@@ -63,14 +63,6 @@ void main() {
 
     expect(find.widgetWithText(Row, "Portal gun 1"), findsOneWidget);
     expect(find.widgetWithText(Row, "Price: 1"), findsOneWidget);
-
-    //var gestureItem = find.byKey(Key("first"));
-
-    //await tester.tap(gestureItem);
-    //await tester.pump();
-
-    //expect(find.text("Hi, I'm a product!"), findsOneWidget);
-    //expect(find.widgetWithText(Row, "Price: 1"), findsNothing);
   });
 
   testWidgets('Testing if the OfferView shows up properly',
