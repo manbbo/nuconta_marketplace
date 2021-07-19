@@ -19,6 +19,10 @@ class UserBloc extends BlocBase {
     subject.sink.add(user);
   }
 
+  buyQuery(int price) {
+    //var que
+  }
+
   @override
   void notifyListeners() {
     super.notifyListeners();

@@ -5,8 +5,9 @@ import 'package:nuconta_marketplace/model/ProductModel.dart';
 class OfferView extends StatelessWidget {
   final Product product;
   final Function onPressedFun;
+  final bool canBeActive;
 
-  OfferView({this.product, this.onPressedFun});
+  OfferView({this.product, this.onPressedFun, this.canBeActive});
 
   Key getProductKey() {
     return Key(product.id);
@@ -36,10 +37,13 @@ class OfferView extends StatelessWidget {
                   child: Text(product.description),
                 ),
               ),
-              Center(
-                child: FlatButton(
-                  child: Text("BUY"),
-                  onPressed: onPressedFun,
+              AbsorbPointer(
+                absorbing: canBeActive,
+                child: Center(
+                  child: FlatButton(
+                    child: Text("BUY"),
+                    onPressed: onPressedFun,
+                  ),
                 ),
               )
             ],
